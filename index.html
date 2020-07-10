@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Countdown</title>
+  </head>
+  <body>
+      <!-- Video Background -->
+      <video class="video-background" loop muted autoplay>
+          <source src="/video/time.mp4"></source>
+      </video>
+      <div class="video-overlay"></div>
+      <!-- Container -->
+      <div class="container">
+          <!-- Input -->
+          <div class="input-container" id="input-container">
+              <h1>Create a Custom Countdown</h1>
+              <form class="form" id="countdown-form">
+                  <label for="title">Title</label>
+                  <input type="text" placeholder="What are you counting down to?" id="title">
+                  <label for="date-picker">Select a Date</label>
+                  <input type="date"  id="date-picker">
+                  <button type="submit">Submit</button>
+              </form>
+          </div>
+      </div>
+    <!-- Script -->
+    <script src="/js/script.js"></script>
+  </body>
+</html>
