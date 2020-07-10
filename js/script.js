@@ -15,6 +15,7 @@ let countdownTitle = "";
 let countdownDate = "";
 let countdownValue = Date;
 let countdownActive;
+let savedCountdown;
 
 // Date Calculations
 const second = 1000;
@@ -63,6 +64,11 @@ function updateCountdown(e) {
   e.preventDefault();
   countdownTitle = e.srcElement[0].value;
   countdownDate = e.srcElement[1].value;
+  savedCountdown = {
+    title: countdownTitle,
+    date: countdownDate
+  };
+  localStorage.setItem("countdown", JSON.stringify(savedCountdown));
   // check for valid date
   if (countdownDate === "") {
     alert("Please Select Data For Countdown");
@@ -84,9 +90,24 @@ function reset() {
   //   Reset Values
   countdownTitle = "";
   countdownDate = "";
+  localStorage.removeItem("countdown");
+}
+
+function restorePreviousCountdown() {
+  if (localStorage.getItem("countdown")) {
+    inputContainer.hidden = true;
+    savedCountdown = JSON.parse(localStorage.getItem("countdown"));
+    countdownTitle = savedCountdown.title;
+    countdownDate = savedCountdown.date;
+    countdownValue = new Date(countdownDate).getTime();
+    updateDOM();
+  }
 }
 
 // Event Listeners
 countdownForm.addEventListener("submit", updateCountdown);
 countdownBtn.addEventListener("click", reset);
 completeBtn.addEventListener("click", reset);
+
+// On Load
+restorePreviousCountdown();
